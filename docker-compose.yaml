@@ -5,6 +5,8 @@ services:
     platform: linux/arm64 # Ganti ke linux/amd64 jika tidak menggunakan ARM (misal PC/laptop)
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
     ports:
       - "9090:9090"
     networks:
@@ -17,6 +19,10 @@ services:
       - "3000:3000"
     volumes:
       - grafana-storage:/var/lib/grafana
+      - ./grafana/config.ini:/etc/grafana/grafana.ini
+      - ./grafana/datasource.yaml:/etc/grafana/provisioning/datasources/default.yaml
+      - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/default.yaml
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
     networks:
       - monitoring_work
 
