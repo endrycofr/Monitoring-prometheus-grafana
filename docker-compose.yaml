@@ -1,0 +1,28 @@
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    platform: linux/arm64 # Ganti ke linux/amd64 jika tidak menggunakan ARM (misal PC/laptop)
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring_work
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    networks:
+      - monitoring_work
+
+networks:
+  monitoring_work:
+    driver: bridge
+
+volumes:
+  grafana-storage:
