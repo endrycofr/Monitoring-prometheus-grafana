@@ -82,8 +82,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -110,11 +109,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "$$hashKey": "object:638",
@@ -122,13 +122,17 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "code",
-          "expr": "avg(process_resident_memory_bytes{job=\"flask_apps\"})\r\n",
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "avg(process_resident_memory_bytes{job=\"nginx_exporter\"})",
           "format": "time_series",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "intervalFactor": 1,
           "legendFormat": "mem",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "AVG Memory ",
@@ -182,8 +186,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -206,11 +209,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "$$hashKey": "object:638",
@@ -220,7 +224,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "avg(rate(process_cpu_seconds_total{job=\"flask_apps\"}[$__rate_interval]))\r\n",
+          "expr": "avg(rate(process_cpu_seconds_total{job=\"nginx_exporter\"}[$__rate_interval]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -295,8 +299,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -323,11 +326,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "$$hashKey": "object:146",
@@ -335,14 +339,18 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "code",
-          "expr": "rate(flask_http_request_duration_seconds_sum{status=\"200\"}[5m])\n/\nrate(flask_http_request_duration_seconds_count{status=\"200\"}[5m])",
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "rate(go_gc_duration_seconds_sum[5m]) / rate(go_gc_duration_seconds_count[5m])",
           "format": "time_series",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{ path }}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Average response time ",
@@ -396,8 +404,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -635,11 +642,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "$$hashKey": "object:766",
@@ -647,14 +655,18 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "code",
-          "expr": "sum(rate(flask_http_request_duration_seconds_count{status!=\"500\"}[30s]) )",
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "sum(rate(redis_target_scrape_request_errors_total{instance=\"192.168.0.103:9121\"}[30s]))",
           "format": "time_series",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "errors",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Errors per second",
@@ -709,8 +721,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -978,11 +989,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "$$hashKey": "object:140",
@@ -990,12 +1002,18 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "increase(flask_http_request_total[1m])",
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "increase(promhttp_metric_handler_requests_total{job=\"nginx_exporter\", code=\"200\"}[5m]) \r\n  or \r\nincrease(promhttp_metric_handler_requests_total{job=\"nginx_exporter\", code=\"500\"}[5m])\r\n",
           "format": "time_series",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "HTTP {{ status }}",
-          "refId": "A"
+          "range": true,
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Total requests per minute",
@@ -1049,8 +1067,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1058,7 +1075,7 @@
               }
             ]
           },
-          "unit": "dtdurationms"
+          "unit": "ms"
         },
         "overrides": []
       },
@@ -1077,16 +1094,17 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "flask_http_request_duration_seconds_count{job=\"flask_apps\"}",
+          "editorMode": "builder",
+          "expr": "rate(go_gc_duration_seconds_count[30s])",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "__auto",
@@ -1146,8 +1164,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1174,11 +1191,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "$$hashKey": "object:638",
@@ -1186,13 +1204,17 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "code",
-          "expr": "process_resident_memory_bytes{job='flask_apps'}",
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "process_resident_memory_bytes{job=\"nginx_exporter\"}",
           "format": "time_series",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "intervalFactor": 1,
           "legendFormat": "mem",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Memory usage",
@@ -1246,8 +1268,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1274,11 +1295,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "$$hashKey": "object:214",
@@ -1286,14 +1308,18 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "code",
-          "expr": "rate(flask_http_request_duration_seconds_count{status=\"200\"}[5m])",
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "rate(go_gc_duration_seconds_count[5m])",
           "format": "time_series",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{ path }}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Requests per second",
@@ -1347,8 +1373,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1375,16 +1400,17 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "rate(flask_http_request_total{job=\"flask_apps\", method=\"GET\"}[5m])\r\n",
+          "editorMode": "builder",
+          "expr": "rate(promhttp_metric_handler_requests_total{job=\"nginx_exporter\", code=\"200\"}[5m])",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "__auto",
@@ -1447,8 +1473,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1475,22 +1500,23 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "flask_request_latency_seconds_count",
+          "expr": "rate(redis_commands_latencies_usec_sum[5m]) / rate(redis_commands_latencies_usec_count[5m])",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "__auto",
           "range": true,
           "refId": "A",
-          "useBackend": false   
+          "useBackend": false
         }
       ],
       "title": "Latency apps",
@@ -1544,8 +1570,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1572,11 +1597,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.3.1",
+      "pluginVersion": "11.6.0",
       "targets": [
         {
           "$$hashKey": "object:638",
@@ -1584,13 +1610,17 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "code",
-          "expr": "rate(process_cpu_seconds_total{job='flask_apps'}[30s])",
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "rate(process_cpu_seconds_total{job=\"nginx_exporter\"}[30s])",
           "format": "time_series",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "intervalFactor": 1,
           "legendFormat": "cpu",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "CPU usage",
@@ -1599,7 +1629,7 @@
   ],
   "preload": false,
   "refresh": "5s",
-  "schemaVersion": 40,
+  "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": []
@@ -1612,8 +1642,7 @@
     "refresh_intervals": []
   },
   "timezone": "",
-  "title": "Example dashboard",
+  "title": "Monitoring Web SmartCampus dashboard",
   "uid": "_eX4mpl3",
-  "version": 1,
-  "weekStart": ""
+  "version": 1
 }
