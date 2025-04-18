@@ -2,7 +2,7 @@ services:
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
-    platform: linux/arm64 # Ganti ke linux/amd64 jika tidak menggunakan ARM (misal PC/laptop)
+    platform: linux/arm64 # Ganti ke linux/amd64 jika bukan ARM
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - /etc/localtime:/etc/localtime:ro
@@ -11,6 +11,7 @@ services:
       - "9090:9090"
     networks:
       - monitoring_work
+    restart: unless-stopped
 
   grafana:
     image: grafana/grafana:latest
@@ -25,6 +26,9 @@ services:
       - ./grafana/dashboards:/var/lib/grafana/dashboards
     networks:
       - monitoring_work
+    depends_on:
+      - prometheus
+    restart: unless-stopped
 
 networks:
   monitoring_work:
