@@ -1003,8 +1003,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "increase(promhttp_metric_handler_requests_total{job=\"nginx_exporter\", code=\"200\"}[5m]) \r\n  or \r\nincrease(promhttp_metric_handler_requests_total{job=\"nginx_exporter\", code=\"500\"}[5m])\r\n",
+          "editorMode": "builder",
+          "expr": "promhttp_metric_handler_requests_in_flight{instance=\"192.168.0.103:9113\"} or increase(promhttp_metric_handler_requests_total{code=\"500\"}[5m])",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -1644,5 +1644,5 @@
   "timezone": "",
   "title": "Monitoring Web SmartCampus dashboard",
   "uid": "_eX4mpl3",
-  "version": 1
+  "version": 2
 }
