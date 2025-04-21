@@ -657,7 +657,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(rate(redis_target_scrape_request_errors_total{instance=\"192.168.0.103:9121\"}[30s]))",
+          "expr": "sum(rate(redis_target_scrape_request_errors_total{job=\"redis_exporter\"}[30s]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -1004,7 +1004,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "promhttp_metric_handler_requests_in_flight{instance=\"192.168.0.103:9113\"} or increase(promhttp_metric_handler_requests_total{code=\"500\"}[5m])",
+          "expr": "nginx_http_requests_total{job=\"nginx_exporter\"} or increase(promhttp_metric_handler_requests_total{code=\"500\"}[5m])",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -1644,5 +1644,5 @@
   "timezone": "",
   "title": "Monitoring Web SmartCampus dashboard",
   "uid": "_eX4mpl3",
-  "version": 2
+  "version": 3
 }
