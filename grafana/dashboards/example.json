@@ -123,8 +123,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "avg(process_resident_memory_bytes{job=\"nginx_exporter\"})",
+          "editorMode": "code",
+          "expr": "avg(process_virtual_memory_bytes)",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -224,7 +224,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "avg(rate(process_cpu_seconds_total{job=\"nginx_exporter\"}[$__rate_interval]))",
+          "expr": "avg(rate(redis_cpu_sys_seconds_total{job=\"redis_exporter\"}[$__rate_interval]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -735,7 +735,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "HTTP 500"
+              "options": "Time"
             },
             "properties": [
               {
@@ -968,6 +968,28 @@
                 "value": {
                   "fixedColor": "#bf1b00",
                   "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": ["HTTP "],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
                 }
               }
             ]
@@ -1003,8 +1025,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "nginx_http_requests_total{job=\"nginx_exporter\"} or increase(promhttp_metric_handler_requests_total{code=\"500\"}[5m])",
+          "editorMode": "code",
+          "expr": "nginx_http_requests_total\r\n",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -1205,8 +1227,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "process_resident_memory_bytes{job=\"nginx_exporter\"}",
+          "editorMode": "code",
+          "expr": "avg(process_virtual_memory_bytes)",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -1580,7 +1602,30 @@
           },
           "unit": "percentunit"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": ["cpu"],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 5,
@@ -1611,8 +1656,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "rate(process_cpu_seconds_total{job=\"nginx_exporter\"}[30s])",
+          "editorMode": "code",
+          "expr": "avg(rate(redis_cpu_sys_seconds_total{job=\"redis_exporter\"}[$__rate_interval]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -1644,5 +1689,5 @@
   "timezone": "",
   "title": "Monitoring Web SmartCampus dashboard",
   "uid": "_eX4mpl3",
-  "version": 3
+  "version": 4
 }
