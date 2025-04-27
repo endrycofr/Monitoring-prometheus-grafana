@@ -18,3 +18,7 @@ scrape_configs:
     static_configs:
       - targets:
           - "192.168.1.106:8081"
+  - job_name: "laravel_apps" # untuk app1,2,3
+    static_configs:
+      - targets:
+          - "192.168.1.109:8081"
