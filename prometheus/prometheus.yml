@@ -4,10 +4,10 @@ global:
 scrape_configs:
   - job_name: "redis_exporter"
     static_configs:
-      - targets: ["192.168.0.103:9121"]
+      - targets: ["192.168.1.106:9121"]
   - job_name: "nginx_exporter"
     static_configs:
-      - targets: ["192.168.0.103:9113"]
+      - targets: ["192.168.1.106:9113"]
   - job_name: "mysql_sender"
     static_configs:
       - targets: ["192.168.1.10:8000"]
@@ -18,4 +18,4 @@ scrape_configs:
   - job_name: "laravel_apps" # Tambahan untuk app1,2,3
     static_configs:
       - targets:
-          - "192.168.0.103:8081/metrics"
+          - "192.168.1.106:8081/metrics"
