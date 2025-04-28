@@ -31,7 +31,7 @@
       },
       "id": 20,
       "panels": [],
-      "title": "Total Apps flask",
+      "title": "avg",
       "type": "row"
     },
     {
@@ -95,15 +95,15 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 5,
         "w": 5,
         "x": 0,
         "y": 1
       },
-      "id": 8,
+      "id": 21,
       "options": {
         "legend": {
-          "calcs": ["mean", "last"],
+          "calcs": ["lastNotNull"],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -123,8 +123,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "avg(process_virtual_memory_bytes)",
+          "editorMode": "builder",
+          "expr": "process_resident_memory_bytes \r\n\r\n",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -133,9 +133,20 @@
           "range": true,
           "refId": "A",
           "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "expr": "",
+          "hide": false,
+          "instant": false,
+          "range": true,
+          "refId": "B"
         }
       ],
-      "title": "AVG Memory ",
+      "title": "Memory usage",
       "type": "timeseries"
     },
     {
@@ -187,23 +198,50 @@
             "steps": [
               {
                 "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
               }
             ]
           },
           "unit": "percentunit"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": ["cpu"],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 5,
         "w": 5,
         "x": 5,
         "y": 1
       },
-      "id": 18,
+      "id": 9,
       "options": {
         "legend": {
-          "calcs": ["lastNotNull", "mean"],
+          "calcs": ["lastNotNull", "max"],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -224,7 +262,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "avg(rate(redis_cpu_sys_seconds_total{job=\"redis_exporter\"}[$__rate_interval]))",
+          "expr": "rate(process_cpu_seconds_total[5m])*10",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -235,7 +273,7 @@
           "useBackend": false
         }
       ],
-      "title": "AVG CPU ",
+      "title": "CPU usage",
       "type": "timeseries"
     },
     {
@@ -244,7 +282,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 6
       },
       "id": 19,
       "panels": [],
@@ -307,7 +345,7 @@
               }
             ]
           },
-          "unit": "s"
+          "unit": "ms"
         },
         "overrides": []
       },
@@ -315,7 +353,7 @@
         "h": 5,
         "w": 10,
         "x": 0,
-        "y": 10
+        "y": 7
       },
       "id": 22,
       "options": {
@@ -341,7 +379,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "rate(go_gc_duration_seconds_sum[5m]) / rate(go_gc_duration_seconds_count[5m])",
+          "expr": "rate(http_server_duration_milliseconds_sum{exported_job=\"Laravel\"}[5m]) / rate(http_server_duration_milliseconds_count[5m])",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -631,7 +669,7 @@
         "h": 4,
         "w": 6,
         "x": 10,
-        "y": 10
+        "y": 7
       },
       "id": 4,
       "options": {
@@ -657,7 +695,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "sum(rate(redis_target_scrape_request_errors_total{job=\"redis_exporter\"}[30s]))",
+          "expr": "sum(rate(http_requests_total_total{status=\"404\"}[30s]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -1000,7 +1038,7 @@
         "h": 4,
         "w": 8,
         "x": 16,
-        "y": 10
+        "y": 7
       },
       "id": 13,
       "options": {
@@ -1026,7 +1064,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "nginx_http_requests_total\r\n",
+          "expr": "sum(increase(http_requests_total_total[5m]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -1069,6 +1107,9 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -1105,9 +1146,9 @@
         "h": 5,
         "w": 9,
         "x": 10,
-        "y": 14
+        "y": 11
       },
-      "id": 23,
+      "id": 17,
       "options": {
         "legend": {
           "calcs": [],
@@ -1126,7 +1167,7 @@
         {
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "rate(go_gc_duration_seconds_count[30s])",
+          "expr": "histogram_quantile(0.99, sum by(le) (rate(http_server_duration_milliseconds_bucket{job=\"laravel_apps_nonalb\"}[5m])))",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "__auto",
@@ -1135,7 +1176,7 @@
           "useBackend": false
         }
       ],
-      "title": "Duration Request",
+      "title": "Latency apps",
       "type": "timeseries"
     },
     {
@@ -1194,20 +1235,20 @@
               }
             ]
           },
-          "unit": "decbytes"
+          "unit": "kbytes"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 5,
         "x": 19,
-        "y": 14
+        "y": 11
       },
-      "id": 21,
+      "id": 8,
       "options": {
         "legend": {
-          "calcs": ["lastNotNull"],
+          "calcs": ["mean", "last"],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -1227,8 +1268,8 @@
             "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "avg(process_virtual_memory_bytes)",
+          "editorMode": "builder",
+          "expr": "avg(redis_memory_used_bytes{job=\"redis_exporter_nonalb\"})",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -1306,7 +1347,7 @@
         "h": 4,
         "w": 10,
         "x": 0,
-        "y": 15
+        "y": 12
       },
       "id": 2,
       "options": {
@@ -1332,7 +1373,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "rate(go_gc_duration_seconds_count[5m])",
+          "expr": "rate(nginx_http_requests_total[1m])\r\n",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -1411,7 +1452,7 @@
         "h": 5,
         "w": 10,
         "x": 0,
-        "y": 19
+        "y": 16
       },
       "id": 24,
       "options": {
@@ -1432,7 +1473,7 @@
         {
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "rate(promhttp_metric_handler_requests_total{job=\"nginx_exporter\", code=\"200\"}[5m])",
+          "expr": "changes(http_requests_total_total[1h])\r\n",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "__auto",
@@ -1472,9 +1513,6 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": "solid"
-            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -1511,9 +1549,9 @@
         "h": 5,
         "w": 9,
         "x": 10,
-        "y": 19
+        "y": 16
       },
-      "id": 17,
+      "id": 25,
       "options": {
         "legend": {
           "calcs": [],
@@ -1532,7 +1570,7 @@
         {
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "rate(redis_commands_latencies_usec_sum[5m]) / rate(redis_commands_latencies_usec_count[5m])",
+          "expr": "rate(http_server_duration_milliseconds_sum{job=\"laravel_apps_nonalb\"}[1m]) / rate(http_server_duration_milliseconds_count[1m])",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "__auto",
@@ -1541,7 +1579,7 @@
           "useBackend": false
         }
       ],
-      "title": "Latency apps",
+      "title": "Duration Request",
       "type": "timeseries"
     },
     {
@@ -1593,50 +1631,23 @@
             "steps": [
               {
                 "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
           "unit": "percentunit"
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": ["cpu"],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 4,
         "w": 5,
         "x": 19,
-        "y": 19
+        "y": 17
       },
-      "id": 9,
+      "id": 18,
       "options": {
         "legend": {
-          "calcs": ["lastNotNull", "max"],
+          "calcs": ["lastNotNull", "mean"],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -1657,12 +1668,12 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "avg(rate(redis_cpu_sys_seconds_total{job=\"redis_exporter\"}[$__rate_interval]))",
+          "expr": "sum by (instance) (\r\n    rate(redis_cpu_sys_seconds_total[1m]) +\r\n    rate(redis_cpu_user_seconds_total[1m]) +\r\n    rate(redis_cpu_sys_children_seconds_total[1m]) +\r\n    rate(redis_cpu_user_children_seconds_total[1m]) +\r\n    rate(process_cpu_seconds_total[1m]) * 10\r\n)\r\n",
           "format": "time_series",
           "fullMetaSearch": false,
-          "includeNullMetadata": true,
+          "includeNullMetadata": false,
           "intervalFactor": 1,
-          "legendFormat": "cpu",
+          "legendFormat": "__auto",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -1689,5 +1700,5 @@
   "timezone": "",
   "title": "Monitoring Web SmartCampus dashboard",
   "uid": "_eX4mpl3",
-  "version": 4
+  "version": 12
 }
