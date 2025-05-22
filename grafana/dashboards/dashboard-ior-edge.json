@@ -65,7 +65,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
-            "drawStyle": "bars",
+            "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
@@ -127,7 +127,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "disableTextWrap": false,
@@ -224,7 +224,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "disableTextWrap": false,
@@ -259,7 +259,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
-            "drawStyle": "bars",
+            "drawStyle": "line",
             "fillOpacity": 100,
             "gradientMode": "none",
             "hideFrom": {
@@ -268,7 +268,7 @@
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "smooth",
+            "lineInterpolation": "linear",
             "lineWidth": 2,
             "pointSize": 5,
             "scaleDistribution": {
@@ -321,7 +321,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "disableTextWrap": false,
@@ -335,7 +335,7 @@
           "useBackend": false
         }
       ],
-      "title": "Error",
+      "title": "Packet Loss",
       "type": "timeseries"
     },
     {
@@ -356,7 +356,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
-            "drawStyle": "bars",
+            "drawStyle": "line",
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
@@ -365,7 +365,7 @@
               "viz": false
             },
             "insertNulls": false,
-            "lineInterpolation": "stepBefore",
+            "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -418,7 +418,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "disableTextWrap": false,
@@ -515,7 +515,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "disableTextWrap": false,
@@ -588,7 +588,7 @@
               }
             ]
           },
-          "unit": "decbits"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -612,12 +612,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "process_resident_memory_bytes{job=\"mysql_sender\"}",
+          "expr": "raspberry_pi_ram_usage{job=\"mysql_sender\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "__auto",
@@ -709,7 +709,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "disableTextWrap": false,
@@ -806,7 +806,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "disableTextWrap": false,
@@ -903,7 +903,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "disableTextWrap": false,
@@ -1000,7 +1000,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "editorMode": "code",
@@ -1093,7 +1093,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "disableTextWrap": false,
@@ -1190,7 +1190,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.6.0",
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "disableTextWrap": false,
@@ -1222,5 +1222,5 @@
   "timezone": "browser",
   "title": "Raspi-server",
   "uid": "aejk055h1owlcc",
-  "version": 15
+  "version": 1
 }
