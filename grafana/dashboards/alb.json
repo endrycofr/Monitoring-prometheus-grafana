@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -31,7 +31,7 @@
       },
       "id": 20,
       "panels": [],
-      "title": "Total Apps flask",
+      "title": "Total Apps Laravel",
       "type": "row"
     },
     {
@@ -103,7 +103,10 @@
       "id": 8,
       "options": {
         "legend": {
-          "calcs": ["mean", "last"],
+          "calcs": [
+            "mean",
+            "last"
+          ],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -203,7 +206,10 @@
       "id": 18,
       "options": {
         "legend": {
-          "calcs": ["lastNotNull", "mean"],
+          "calcs": [
+            "lastNotNull",
+            "mean"
+          ],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -320,7 +326,9 @@
       "id": 22,
       "options": {
         "legend": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true
@@ -636,7 +644,11 @@
       "id": 4,
       "options": {
         "legend": {
-          "calcs": ["mean", "lastNotNull", "max"],
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max"
+          ],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -978,7 +990,9 @@
               "id": "byNames",
               "options": {
                 "mode": "exclude",
-                "names": ["HTTP "],
+                "names": [
+                  "HTTP "
+                ],
                 "prefix": "All except:",
                 "readOnly": true
               }
@@ -1005,7 +1019,10 @@
       "id": 13,
       "options": {
         "legend": {
-          "calcs": ["mean", "max"],
+          "calcs": [
+            "mean",
+            "max"
+          ],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -1125,8 +1142,8 @@
       "targets": [
         {
           "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "rate(http_server_duration_milliseconds_sum{job=\"laravel_apps\"}[1m]) / rate(http_server_duration_milliseconds_count[1m])",
+          "editorMode": "builder",
+          "expr": "rate(http_server_duration_milliseconds_sum{job=\"laravel_appsalb\"}[1m]) / rate(http_server_duration_milliseconds_count[1m])",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "__auto",
@@ -1207,7 +1224,9 @@
       "id": 21,
       "options": {
         "legend": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -1322,7 +1341,10 @@
       "id": 2,
       "options": {
         "legend": {
-          "calcs": ["mean", "lastNotNull"],
+          "calcs": [
+            "mean",
+            "lastNotNull"
+          ],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true
@@ -1543,7 +1565,7 @@
         {
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "histogram_quantile(0.99, sum by(le) (rate(http_server_duration_milliseconds_bucket{job=\"laravel_apps\"}[5m])))",
+          "expr": "histogram_quantile(0.99, sum by(le) (rate(http_server_duration_milliseconds_bucket{job=\"laravel_appsalb\"}[5m])))",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "legendFormat": "__auto",
@@ -1620,7 +1642,9 @@
               "id": "byNames",
               "options": {
                 "mode": "exclude",
-                "names": ["cpu"],
+                "names": [
+                  "cpu"
+                ],
                 "prefix": "All except:",
                 "readOnly": true
               }
@@ -1647,7 +1671,10 @@
       "id": 9,
       "options": {
         "legend": {
-          "calcs": ["lastNotNull", "max"],
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -1700,5 +1727,5 @@
   "timezone": "",
   "title": "Monitoring Web SmartCampus dashboard",
   "uid": "_eX4mpl3",
-  "version": 5
+  "version": 2
 }
