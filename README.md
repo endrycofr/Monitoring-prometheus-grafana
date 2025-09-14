@@ -1,6 +1,5 @@
 
 
-````markdown
 # Monitoring dengan Prometheus & Grafana
 
 Project ini bertujuan menyediakan solusi pemantauan (monitoring) menggunakan **Prometheus** dan **Grafana**. Cocok untuk memonitor aplikasi, infrastruktur, dan metrik custom.
@@ -18,7 +17,6 @@ Project ini bertujuan menyediakan solusi pemantauan (monitoring) menggunakan **P
 9. [Troubleshooting](#troubleshooting)  
 10. [Lisensi](#lisensi)  
 
----
 
 ## Deskripsi
 
@@ -34,7 +32,7 @@ Tujuan utama:
 - Menampilkan metrik aplikasi (latensi, throughput, error rate)  
 - Menyajikan dashboard yang informatif dan mudah digunakan  
 
----
+
 
 ## Fitur
 
@@ -43,7 +41,7 @@ Tujuan utama:
 - Kemampuan untuk menambah *exporter* metrik tambahan (mis. `node_exporter`, `application exporter`)  
 - Alerting (bisa dikembangkan lebih lanjut dengan Alertmanager)  
 
----
+
 
 ## Arsitektur & Komponen
 
@@ -54,7 +52,7 @@ Tujuan utama:
 | **Grafana**    | Membuat dashboard visualisasi berdasarkan data dari Prometheus |
 | **Docker & Docker Compose** | Membantu orkestrasi dan memudahkan setup lingkungan |
 
----
+
 
 ## Prasyarat
 
@@ -65,7 +63,7 @@ Pastikan kamu sudah menginstal:
 - Port yang diperlukan tidak konflik (default: Prometheus `9090`, Grafana `3000`)  
 - Izin akses ke file & jaringan (untuk exporter tertentu)  
 
----
+
 
 ## Instalasi
 
