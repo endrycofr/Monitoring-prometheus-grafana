@@ -72,7 +72,7 @@ Pastikan kamu sudah menginstal:
    ```bash
    git clone https://github.com/endrycofr/Monitoring-prometheus-grafana.git
    cd Monitoring-prometheus-grafana
-````
+
 
 2. Jalankan dengan Docker Compose:
 
@@ -82,7 +82,7 @@ Pastikan kamu sudah menginstal:
 
    Ini akan menjalankan container untuk Prometheus, Grafana, dan exporter (jika ada).
 
----
+
 
 ## Konfigurasi
 
@@ -96,7 +96,7 @@ Jika ingin menambah exporter baru:
 2. Tambahkan target di `prometheus/prometheus.yml`
 3. (Opsional) Tambahkan panel dashboard di Grafana
 
----
+
 
 ## Penggunaan
 
@@ -120,7 +120,7 @@ node_cpu_seconds_total
 rate(http_requests_total[5m])
 ```
 
----
+
 
 ## Pengembangan
 
@@ -131,7 +131,7 @@ Kamu bisa mengembangkan lebih lanjut dengan:
 * Setup alerting dengan Alertmanager
 * Men-deploy di server / cloud (misalnya dengan Kubernetes)
 
----
+
 
 ## Troubleshooting
 
@@ -142,13 +142,4 @@ Kamu bisa mengembangkan lebih lanjut dengan:
 | Metrik tidak muncul                      | Periksa apakah exporter aktif dan sudah ditambahkan di `prometheus.yml`   |
 | Port sudah dipakai                       | Ubah port di `docker-compose.yml` atau hentikan service lain yang konflik |
 
----
 
-## Lisensi
-
-Lisensi mengikuti [MIT License](LICENSE) atau sesuai ketentuan repo ini.
-
-```
-
-Mau saya tambahkan **diagram arsitektur** dalam bentuk ASCII/mermaid supaya README lebih visual, atau cukup tabel saja?
-```
